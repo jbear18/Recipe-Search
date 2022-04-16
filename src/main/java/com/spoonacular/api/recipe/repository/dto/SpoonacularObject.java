@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class SpoonacularObject {
 
+
     @JsonProperty("type")
     private String type;
     @JsonIgnore

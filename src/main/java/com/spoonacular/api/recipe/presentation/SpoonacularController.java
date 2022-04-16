@@ -1,5 +1,6 @@
 package com.spoonacular.api.recipe.presentation;
 
+import com.spoonacular.api.recipe.repository.SpoonacularRepository;
 import com.spoonacular.api.recipe.repository.dto.SpoonacularObject;
 import com.spoonacular.api.recipe.service.SpoonacularService;
 import io.swagger.annotations.ApiOperation;
@@ -13,17 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class SpoonacularController {
 
     private final SpoonacularService locService;
 
+
     public SpoonacularController(SpoonacularService locService) {
         this.locService = locService;
     }
 
 //    @GetMapping("/searchLocResults")
+    //originally response = Result.class
 @ApiOperation(value = "Searches for articles matching the search term",
         notes = "Response may include multiple Result values.",
         response = SpoonacularObject.class,
@@ -33,13 +37,16 @@ public class SpoonacularController {
         @ApiResponse(code = 404, message = "Result(s) not found")
 })
 
-    public String getResults(    @RequestParam(value="q") String query){
+    public String getResults(@RequestParam(value="q") String query){
 //        return "Searching for recipes related to " + query;
-        ArrayList<SpoonacularObject> LocController results = locService.getResults(query);
-        if(CollectionUtils.isEmpty(results)){
+
+    SpoonacularObject result = locService.getResults(query);
+
+//    ArrayList<SpoonacularObject>SpoonacularController results = locService.getResults(query);
+        if(result == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }
-        return results;
+        return result.toString();
     }
 
 

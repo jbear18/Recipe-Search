@@ -29,8 +29,8 @@ public class SpoonacularRepository {
                       .build()
               ).retrieve()
               .bodyToMono(SpoonacularObject.class)
-              .block()
-              .getResults();
+              .block();
+//              .getResults();
       //getResults is a method from SpoonacularController
     }
 
