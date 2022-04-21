@@ -1,46 +1,78 @@
 package com.spoonacular.api.recipe.repository.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+//import com.sun.xml.internal.ws.developer.Serialization;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "type"
-})
-@Generated("jsonschema2pojo")
 public class SpoonacularObject {
 
+//    @Serialization
+    @SerializedName("id")
+    @Expose
+    private int id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("calories")
+    @Expose
+    private int calories;
+    @SerializedName("carbs")
+    @Expose
+    private String carbs;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("protein")
+    @Expose
+    private String protein;
 
-    @JsonProperty("type")
-    private String type;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    public String getTitle() {
+        return title;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public int getCalories() {
+        return calories;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    public String getCarbs() {
+        return carbs;
+    }
+
+    public void setCarbs(String carbs) {
+        this.carbs = carbs;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image= image;
+    }
+
+    public String getProtein() {
+        return protein;
+    }
+
+    public void setProtein(String protein) {
+        this.protein = protein;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
 }
