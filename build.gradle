@@ -15,6 +15,9 @@ repositories {
 dependencies {
 	//first two from original file
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'junit:junit:4.13.1'
+	implementation 'junit:junit:4.13.1'
+	implementation 'io.github.mangkyu:spring-boot-test-automock:0.0.4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //tried using this one to solve SerializedName issue
 	implementation 'javax.json:javax.json-api:1.1'
@@ -35,3 +38,27 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+sourceSets {
+	intTest {
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
+}
+
+configurations {
+	intTestImplementation.extendsFrom testImplementation
+	intTestRunTimeOnly.extendsFrom runtimeOnly
+}
+
+task intTest(type: Test) {
+	useJUnitPlatform()
+	description = 'Runs the integration tests.'
+	group = 'verification'
+
+	testClassesDirs = sourceSets.intTest.output.classesDirs
+	classpath = sourceSets.intTest.runtimeClasspath
+	shouldRunAfter test
+}
+
+check.dependsOn intTest
