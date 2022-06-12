@@ -32,7 +32,7 @@ public class SpoonacularControllerIntTest {
     @MockBean
     private SpoonacularService spoonacularService;
 
-    //CHANGE THE TEST: NEED TO RUN A SIMILARONE BUT NOT THIS EXACT ONE
+    //CHANGE THE TEST: NEED TO RUN A SIMILAR ONE BUT NOT THIS EXACT ONE
     @Test
     public void givenGoodQuery_whenSearchForResults_thenIsOkAndReturnsResults() throws Exception {
         //given

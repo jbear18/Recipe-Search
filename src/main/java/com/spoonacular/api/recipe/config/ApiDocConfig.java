@@ -20,7 +20,7 @@ public class ApiDocConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Level 7 Recipe Search!",
-                "Jessie's LEAGUE of Amazing Programmers Level 7 Recipe Search",
+                "Jessie's LEAGUE Level 7 Recipe Search",
                 "1.0.0",
                 null,
                 new Contact("Jessie Shen", "www.jointheleague.org", "jshen2024@gmail.com"),

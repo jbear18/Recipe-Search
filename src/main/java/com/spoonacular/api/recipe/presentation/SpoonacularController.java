@@ -1,7 +1,8 @@
 package com.spoonacular.api.recipe.presentation;
 
 import com.spoonacular.api.recipe.repository.SpoonacularRepository;
-import com.spoonacular.api.recipe.repository.dto.SpoonacularObject;
+import com.spoonacular.api.recipe.repository.dto.Result;
+import com.spoonacular.api.recipe.repository.dto.Result;
 import com.spoonacular.api.recipe.service.SpoonacularService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -19,35 +20,42 @@ import java.util.List;
 @RestController
 public class SpoonacularController {
 
-    private final SpoonacularService locService;
+    private final SpoonacularService spoonacularService;
 
 
-    public SpoonacularController(SpoonacularService locService) {
-        this.locService = locService;
+    public SpoonacularController(SpoonacularService spoonacularService) {
+        this.spoonacularService = spoonacularService;
     }
 
-//    @GetMapping("/searchLocResults")
+    //    @GetMapping("/searchLocResults")
     //originally response = Result.class
-@ApiOperation(value = "Searches for articles matching the search term",
-        notes = "Response may include multiple Result values.",
-        response = SpoonacularObject.class,
-        responseContainer="List")
-@ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Result(s) found"),
-        @ApiResponse(code = 404, message = "Result(s) not found")
-})
+    @ApiOperation(value = "Searches for recipes matching the search term",
+            notes = "Response may include multiple Result values.",
+            response = Result.class,
+            responseContainer = "List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Result(s) found"),
+            @ApiResponse(code = 404, message = "Result(s) not found")
+    })
 
-    public String getResults(@RequestParam(value="q") String query){
-//        return "Searching for recipes related to " + query;
 
-    SpoonacularObject result = locService.getResults(query);
+//Result result = spoonacularService.getResults(query);
+//
+//    List<Result>SpoonacularController results = spoonacularService.getResults(query);
+//        if(result == null){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
+//        }
+//       return result.toString();
+//
 
-//    ArrayList<SpoonacularObject>SpoonacularController results = locService.getResults(query);
-        if(result == null){
+    public List<Result> getResults(@RequestParam(value="q") String query){
+        List<Result> results = new ArrayList<Result>();
+        results.add(spoonacularService.getResults(query));
+        if(CollectionUtils.isEmpty(results)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }
-        return result.toString();
+        return results;
     }
 
 
-}
+    }

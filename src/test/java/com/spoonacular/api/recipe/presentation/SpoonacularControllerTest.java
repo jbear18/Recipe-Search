@@ -1,24 +1,33 @@
 package com.spoonacular.api.recipe.presentation;
 
 import com.spoonacular.api.recipe.service.SpoonacularService;
+import com.spoonacular.api.recipe.repository.dto.SpoonacularResponse;
+import com.spoonacular.api.recipe.repository.dto.Result;
+import com.spoonacular.api.recipe.service.SpoonacularService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.xml.transform.Result;
+import java.util.Collections;
+import java.util.List;
 
-public class SpoonacularControllerTest {
-    private SpoonacularController sc;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+class LocControllerTest {
+
+    private SpoonacularController spoonacularController;
 
     @Mock
-    private SpoonacularService ss;
+    private SpoonacularService spoonacularService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        sc = new SpoonacularController(ss);
+        spoonacularController = new SpoonacularController(spoonacularService);
     }
 
     @Test
@@ -27,15 +36,16 @@ public class SpoonacularControllerTest {
         String query = "Java";
         Result result = new Result();
         result.setTitle("TITLE");
-        result.setLink("LINK");
-        result.setAuthors(Collections.singletonList("AUTHORS"));
+        result.setCalories(100);
+
         List<Result> expectedResults = Collections.singletonList(result);
 
-        when(locService.getResults(query))
-                .thenReturn(expectedResults);
+        when(spoonacularService.getResults(query))
+                .thenReturn((Result) expectedResults);
 
         //when
-        List<Result> actualResults = locController.getResults(query);
+        //GIVES A SINGLE RESULT, INSTEAD A LIST OF RESULTS??!
+        List<Result> actualResults = spoonacularController.getResults(query);
 
         //then
         assertEquals(expectedResults, actualResults);
@@ -48,10 +58,8 @@ public class SpoonacularControllerTest {
 
         //when
         //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
+        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> spoonacularController.getResults(query));
         assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
     }
-
-
 
 }

@@ -1,7 +1,7 @@
 package com.spoonacular.api.recipe.service;
 
 import com.spoonacular.api.recipe.repository.SpoonacularRepository;
-import com.spoonacular.api.recipe.repository.dto.SpoonacularObject;
+import com.spoonacular.api.recipe.repository.dto.Result;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +12,7 @@ public class SpoonacularService {
         this.spoonacularRepository = spoonacularRepository;
     }
 
-    public SpoonacularObject getResults(String query){
+    public Result getResults(String query){
         return spoonacularRepository.getResults(query);
     }
 }

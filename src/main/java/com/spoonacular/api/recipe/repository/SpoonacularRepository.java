@@ -1,5 +1,6 @@
 package com.spoonacular.api.recipe.repository;
 
+import com.spoonacular.api.recipe.repository.dto.Result;
 import com.spoonacular.api.recipe.repository.dto.SpoonacularObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -10,14 +11,14 @@ public class SpoonacularRepository {
   private final WebClient webClient;
   private static final String baseUrl =  "https://api.spoonacular.com/recipes/complexSearch";
 
-  public SpoonacularRepository() {
+  public SpoonacularRepository(WebClient webClientMock) {
     webClient = WebClient
             .builder()
             .baseUrl(baseUrl)
             .build();
   }
 
-    public SpoonacularObject getResults(String topic){
+    public Result getResults(String topic){
       return webClient.get()
               .uri(uriBuilder -> uriBuilder
                       //GET API KEY FROM SPOONACULAR
@@ -26,7 +27,7 @@ public class SpoonacularRepository {
                       .queryParam("sort", "popularity")
                       .build()
               ).retrieve()
-              .bodyToMono(SpoonacularObject.class)
+              .bodyToMono(Result.class)
               .block();
 //              .getResults();
       //getResults is a method from SpoonacularController
