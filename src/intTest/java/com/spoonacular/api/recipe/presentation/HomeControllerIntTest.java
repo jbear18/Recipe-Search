@@ -1,26 +1,29 @@
 package com.spoonacular.api.recipe.presentation;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMcvTest(HomeController.class)
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(HomeController.class)
+// MILESTONE 13
+//PROBLEM: packages names are weird and combined together.
+//then run the test to make sure it passes using play button.
+
 public class HomeControllerIntTest {
-@Autowired
-private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
-    public void whenHome_ThenReturnMovedPermanentlyAndRedirect() {
-
-    }
-
-    @Test
-    public void givenController_WhenHome_ThenReturnMovedPermanentlyAndRedirect() throws Exception {
+    public void whenHome_ThenReturnMovedPermanentlyAndRedirect() throws Exception {
         mockMvc.perform(get("/"))
                 .andDo(print())
                 .andExpect(status().isMovedPermanently())
                 .andExpect(redirectedUrl("swagger-ui.html"));
     }
 }
-
-//PROBLEM: packages names are weird and combined together.
-//then run the test to make sure it passes using play button.

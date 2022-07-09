@@ -70,8 +70,11 @@ class SpoonacularRepositoryTest {
                 .thenReturn(spoonacularResponse);
 
         //when
-        List<Result> actualSpoonacularResults = new ArrayList<Result>();
-        actualSpoonacularResults.add(spoonacularRepository.getResults(query));
+//        List<Result> actualSpoonacularResults = new ArrayList<Result>();
+//        actualSpoonacularResults.add(spoonacularRepository.getResults(query));
+
+    //below added/modified from MILESTONE 11
+        List<Result> actualSpoonacularResults = spoonacularRepository.getResults(query);
 
         //then
         assertEquals(expectedResults, actualSpoonacularResults);
