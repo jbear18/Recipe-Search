@@ -13,6 +13,6 @@ public class SpoonacularService {
     }
 
     public Result getResults(String query){
-        return spoonacularRepository.getResults(query);
+        return (Result) spoonacularRepository.getResults(query);
     }
 }

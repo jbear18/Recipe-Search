@@ -6,23 +6,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
+import org.springframework.http.MediaType;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(SpoonacularController.class)
-public class SpoonacularControllerIntTest {
+class SpoonacularControllerIntTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,26 +36,30 @@ public class SpoonacularControllerIntTest {
         //given
         String query = "pasta";
         String title = "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs";
+        int id = 716429;
         int calories = 636;
-        String link = "LINK";
+        String image = "https://webknox.com/recipeImages/716429-556x370.jpg";
+
 
         Result result = new Result();
-
         result.setTitle(title);
-        result.setAuthors(Collections.singletonList(author));
-        result.setLink(link);
+        result.setImage(image);
+        result.setId(id);
+        result.setCalories(calories);
+
         List<Result> expectedResults = Collections.singletonList(result);
 
-       //when
-        when(spoonacularService.getResults(query)).thenReturn(expectedResults);
+        //when
+        when(spoonacularService.getResults(query)).thenReturn((Result) expectedResults);
 
         //then
         MvcResult mvcResult = mockMvc.perform(get("/searchSpoonacularResults?q=" + query))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title", is(title)))
-                .andExpect(jsonPath("$[0].authors[0]", is(author)))
-                .andExpect(jsonPath("$[0].link", is(link)))
+                .andExpect(jsonPath("$[0].image", is(image)))
+                .andExpect(jsonPath("$[0].calories", is(calories)))
+                .andExpect(jsonPath("$[0].id", is(id)))
                 .andReturn();
 
         assertEquals(MediaType.APPLICATION_JSON_VALUE, mvcResult.getResponse().getContentType());

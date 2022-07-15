@@ -11,8 +11,9 @@ public class Result {
     // 1. title
     // 2. ID (part of generating the link)
     // 3. calories
-    // 4. carbs
-    // 5. image
+    // 4. image
+
+    //got rid of carbs
 
 
     @JsonAlias("title")
@@ -35,15 +36,15 @@ public class Result {
         this.calories = calories;
     }
 
-    @JsonAlias("carbs")
-    private String carbs;
-    public String getCarbs() {
-        return carbs;
-    }
-
-    public void setCarbs(String carbs) {
-        this.carbs = carbs;
-    }
+//    @JsonAlias("carbs")
+//    private int carbs;
+//    public int getCarbs() {
+//        return carbs;
+//    }
+//
+//    public void setCarbs(int carbs) {
+//        this.carbs = carbs;
+//    }
 
     @JsonAlias("image")
     private String image;
