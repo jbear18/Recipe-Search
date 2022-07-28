@@ -29,7 +29,7 @@ public class SpoonacularController {
         this.spoonacularService = spoonacularService;
     }
 
-    //    @GetMapping("/searchLocResults")
+        @GetMapping("/searchSpoonacularResults")
     //originally response = Result.class
     @ApiOperation(value = "Searches for recipes matching the search term",
             notes = "Response may include multiple Result values.",
