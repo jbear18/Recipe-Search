@@ -34,7 +34,7 @@ public class SpoonacularControllerTest {
         String query = "Java";
         Result result = new Result();
         result.setTitle("TITLE");
-        result.setCalories(100);
+        result.setMinCalories(100);
 
         List<Result> expectedResults = Collections.singletonList(result);
 

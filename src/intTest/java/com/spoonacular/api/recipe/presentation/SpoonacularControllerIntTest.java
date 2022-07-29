@@ -37,7 +37,7 @@ class SpoonacularControllerIntTest {
         String query = "pasta";
         String title = "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs";
         int id = 716429;
-        int calories = 636;
+        int minCalories = 636;
         String image = "https://webknox.com/recipeImages/716429-556x370.jpg";
 
 
@@ -45,7 +45,7 @@ class SpoonacularControllerIntTest {
         result.setTitle(title);
         result.setImage(image);
         result.setId(id);
-        result.setCalories(calories);
+        result.setCalories(minCalories);
 
         List<Result> expectedResults = Collections.singletonList(result);
 
@@ -58,7 +58,7 @@ class SpoonacularControllerIntTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title", is(title)))
                 .andExpect(jsonPath("$[0].image", is(image)))
-                .andExpect(jsonPath("$[0].calories", is(calories)))
+                .andExpect(jsonPath("$[0].minCalories", is(minCalories)))
                 .andExpect(jsonPath("$[0].id", is(id)))
                 .andReturn();
 

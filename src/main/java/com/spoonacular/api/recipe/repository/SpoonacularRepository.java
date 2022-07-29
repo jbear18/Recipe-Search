@@ -37,21 +37,5 @@ public class SpoonacularRepository {
             .getResults();
   }
 
-//    public Result getResults(String topic){
-//      return webClient.get()
-//              .uri(uriBuilder -> uriBuilder
-//                      //GET API KEY FROM SPOONACULAR
-//                      .queryParam("apiKey", "a3e9c275cba8484cb80898a8423e9c34")
-//                      .queryParam("query", topic)
-//                      .queryParam("sort", "popularity")
-//                      .build()
-//              ).retrieve()
-//              .bodyToMono(Result.class)
-//              .block()
-//              .getResults();
-////              from milestone 8
-//
-//      //getResults is a method from SpoonacularController
-//    }
 
 }

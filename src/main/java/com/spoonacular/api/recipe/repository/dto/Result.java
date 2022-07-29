@@ -26,14 +26,14 @@ public class Result {
         this.title = title;
     }
 
-    @JsonAlias("calories")
-    private int calories;
-    public int getCalories() {
-        return calories;
+    @JsonAlias("minCalories")
+    private int minCalories;
+    public int getMinCalories() {
+        return minCalories;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
+    public void setMinCalories(int minCalories) {
+        this.minCalories = minCalories;
     }
 
 //    @JsonAlias("carbs")
