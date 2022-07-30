@@ -51,8 +51,7 @@ public class SpoonacularController {
 //
 
     public List<Result> getResults(@RequestParam(value="q") String query){
-        List<Result> results = new ArrayList<Result>();
-        results.add(spoonacularService.getResults(query));
+        List<Result> results = spoonacularService.getResults(query);
         if(CollectionUtils.isEmpty(results)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }

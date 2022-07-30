@@ -4,6 +4,9 @@ import com.spoonacular.api.recipe.repository.SpoonacularRepository;
 import com.spoonacular.api.recipe.repository.dto.Result;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SpoonacularService {
     private final SpoonacularRepository spoonacularRepository;
@@ -12,7 +15,7 @@ public class SpoonacularService {
         this.spoonacularRepository = spoonacularRepository;
     }
 
-    public Result getResults(String query){
-        return spoonacularRepository.getResults(query).get(0);
+    public List<Result> getResults(String query){
+        return spoonacularRepository.getResults(query);
     }
 }

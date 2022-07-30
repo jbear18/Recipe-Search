@@ -34,12 +34,11 @@ public class SpoonacularControllerTest {
         String query = "Java";
         Result result = new Result();
         result.setTitle("TITLE");
-        result.setMinCalories(100);
 
         List<Result> expectedResults = Collections.singletonList(result);
 
         when(spoonacularService.getResults(query))
-                .thenReturn((Result) expectedResults);
+                .thenReturn(expectedResults);
 
         //when
         //GIVES A SINGLE RESULT, INSTEAD A LIST OF RESULTS??! (this is milestone 10)

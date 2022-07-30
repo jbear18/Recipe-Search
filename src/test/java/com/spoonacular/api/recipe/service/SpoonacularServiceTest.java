@@ -32,13 +32,12 @@ public class SpoonacularServiceTest {
         String query = "Java";
         Result result = new Result();
         result.setTitle("TITLE");
-        result.setCalories(100);
 
         List<Result> expectedResults = Collections.singletonList(result);
 
         //when
         when(spoonacularService.getResults(query))
-                .thenReturn((Result) expectedResults);
+                .thenReturn(expectedResults);
 
 
         List<Result> actualResults = (List<Result>) spoonacularService.getResults(query);

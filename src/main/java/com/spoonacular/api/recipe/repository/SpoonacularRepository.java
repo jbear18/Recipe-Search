@@ -1,5 +1,6 @@
 package com.spoonacular.api.recipe.repository;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.spoonacular.api.recipe.repository.dto.Result;
 import com.spoonacular.api.recipe.repository.dto.SpoonacularResponse;
 import org.springframework.stereotype.Repository;
@@ -25,7 +26,7 @@ public class SpoonacularRepository {
   }
 
   public List<Result> getResults(String topic) {
-    return webClient.get()
+return webClient.get()
             .uri(uriBuilder -> uriBuilder
                       .queryParam("apiKey", "a3e9c275cba8484cb80898a8423e9c34")
                       .queryParam("query", topic)
@@ -34,7 +35,9 @@ public class SpoonacularRepository {
             ).retrieve()
             .bodyToMono(SpoonacularResponse.class)
             .block()
+
             .getResults();
+
   }
 
 

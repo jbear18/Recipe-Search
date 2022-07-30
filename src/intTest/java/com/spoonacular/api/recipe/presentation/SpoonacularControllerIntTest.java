@@ -45,12 +45,12 @@ class SpoonacularControllerIntTest {
         result.setTitle(title);
         result.setImage(image);
         result.setId(id);
-        result.setCalories(minCalories);
+
 
         List<Result> expectedResults = Collections.singletonList(result);
 
         //when
-        when(spoonacularService.getResults(query)).thenReturn((Result) expectedResults);
+        when(spoonacularService.getResults(query)).thenReturn(expectedResults);
 
         //then
         MvcResult mvcResult = mockMvc.perform(get("/searchSpoonacularResults?q=" + query))

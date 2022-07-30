@@ -13,8 +13,6 @@ public class Result {
     // 3. calories
     // 4. image
 
-    //got rid of carbs
-
 
     @JsonAlias("title")
     private String title;
@@ -26,25 +24,6 @@ public class Result {
         this.title = title;
     }
 
-    @JsonAlias("minCalories")
-    private int minCalories;
-    public int getMinCalories() {
-        return minCalories;
-    }
-
-    public void setMinCalories(int minCalories) {
-        this.minCalories = minCalories;
-    }
-
-//    @JsonAlias("carbs")
-//    private int carbs;
-//    public int getCarbs() {
-//        return carbs;
-//    }
-//
-//    public void setCarbs(int carbs) {
-//        this.carbs = carbs;
-//    }
 
     @JsonAlias("image")
     private String image;
