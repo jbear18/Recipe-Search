@@ -22,6 +22,7 @@ public class Result {
 
     public void setTitle(String title) {
         this.title = title;
+        this.link = "https://spoonacular.com/" + title.split(" ")[title.split(" ").length-1] + "-" + id;
     }
 
 
@@ -43,5 +44,12 @@ public class Result {
 
     public void setId(int id){
         this.id = id;
+
     }
+
+    private String link;
+    public String getLink(){
+        return link;
+    }
+
 }
