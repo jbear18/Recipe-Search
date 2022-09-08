@@ -19,7 +19,7 @@ public class ApiDocConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Level 7 Recipe Search!",
+                "Recipe Search!",
                 "Jessie's LEAGUE Level 7 Recipe Search",
                 "1.0.0",
                 null,
