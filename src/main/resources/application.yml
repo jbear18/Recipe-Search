@@ -1,2 +1,3 @@
 server: "https://level7-react-frontend-template.vercel.app/"
+  Access-Control-Allow-Origin: "https://level7-react-frontend-template.vercel.app/"
   port: 5000
