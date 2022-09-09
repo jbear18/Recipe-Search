@@ -1,2 +1,2 @@
-server:
-  port: 5000
+server: "https://level7-react-frontend-template.vercel.app/"
+port: 5000
